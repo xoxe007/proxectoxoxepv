@@ -1,0 +1,31 @@
+#1º LISTA DE GRUPOS DE USUARIOS DE DOMINIO:
+samba-tool group list
+
+#2ºAÑADIR GRUPO DE USUARIOS:
+samba-tool group add --description="Grupo que contiene cuentas de usuario para empleados del departamento de ventas"--groupou=OU=ventas veentas
+samba-tool group add --description="Grupo que contiene cuentas de usuario de empleados del departamento ti"--group-scope=Domain ti
+for groups in direcion rh financiero; do samba-tool group add $groups ; done
+
+#3ºAÑADIR MIEMBROS AL GRUPO DE USUARIOS:
+
+samba-tool group addmembers direcion carlos,gilberto
+samba-tool group addmembers rh thais,suzane
+samba-tool group addmembers financiero mauricio,mariane
+
+#4ºLISTA LOS MIEMBROS DEL GRUPO DE USUARIOS:
+samba-tool group listmembers direcion
+samba-tool group listmembers rh
+samba-tool group listmembers financiero
+
+#5º - ELIMINAR MIEMBROS DEL GRUPO DE USUARIOS:
+samba-tool group add grupo1
+samba-tool group addmembers ti grupo1
+samba-tool group removemembers ti grupo1
+
+#6º - ELIMINAR UN GRUPO DE USUARIOS:
+samba-tool group delete grupo1
+
+#7º - MOVER GRUPO DE USUARIOS DENTRO DE UNA UNIDAD ORGANIZATIVA:
+samba-tool group move ti OU=ti
+samba-tool group move direcion "OU=Direcion,DC=empresa,DC=local"
+

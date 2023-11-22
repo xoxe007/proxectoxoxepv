@@ -1,0 +1,11 @@
+dig a srvdcempresa1.local
+
+dig a www.lpi.org
+
+nano /usr/local/samba/etc/samba/smb.conf
+
+testparm
+
+systemctl restart samba-ad-dc.service
+
+systemctl status samba-ad-dc.service

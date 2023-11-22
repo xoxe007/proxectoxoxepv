@@ -1,0 +1,38 @@
+cd /etc/netplan
+ls -l
+cat 00-installer-config.yaml
+#vamos a instalar el network-manager para gestionar 
+la red y no tocar el archivo de configuracion .yaml pues es muy sensible a los espacios.
+
+apt install network-manager -y
+cd /etc/NetworkManager/
+nano dns.conf
+[main]
+dns=
+
+#Depués editamos el archivo de configuracion que fue creado
+cd /etc/netplan/
+nano 00-installer-config.yaml
+
+# This is the network config written by 'subiquity'
+network:
+  version: 2
+  renderer: NetworkManager
+  
+#Depués ejecutamos el siguiente comando para aplicar los cambios
+ netplan apply
+ 
+#Reiniciamos el servicio para que coja el archivo dns.con editado
+
+systemctl restart NetworkManager.service
+
+#a partir de este momento ya podemos utlizar los
+comnados del networkmanager para gestionar las placas de red
+
+nmuti
+systemctl restart NetworkManager.service
+ip -4 address show dev enp0s3
+
+
+
+ 

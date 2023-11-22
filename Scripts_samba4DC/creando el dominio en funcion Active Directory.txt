@@ -1,0 +1,52 @@
+systemctl stop systemd-resolved
+
+ss -l -n | grep 53
+ 
+systemctl disable systemd-resolved.service
+ 
+systemctl restart NetworkManager.service
+
+cat /etc/resolv.conf
+
+#FQDN
+
+ls -l /etc/hosts
+
+nano /etct/hosts
+
+127.0.0.1 localhost
+10.10.10.11 srvdc1.empresa.local srvdc1
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+hostname -f
+
+#provision dominio
+
+samba-tool domain provision --use-rfc2307 --domain=EMPRESA --realm=EMPRESA.LOCAL
+
+
+samba-tool user setpassword administrator
+
+ls -l /usr/local/samba/var/lib/samba/private/krb5.conf
+
+cat /usr/local/samba/var/lib/samba/private
+
+ cp -bv /usr/local/samba/var/lib/samba/private/krb5.conf /etc/krb5.conf
+ 
+ systemctl start samba-ad-dc.service
+
+systemctl status samba-ad-dc.service
+ 
+ 
+
+
+
+  
+  
+

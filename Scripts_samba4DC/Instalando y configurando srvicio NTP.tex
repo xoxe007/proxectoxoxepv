@@ -1,0 +1,28 @@
+apt-get update
+apt-get install chrony
+nano /etc/chrony/chrony.conf 
+
+
+server 0.es.pool.ntp.org iburst
+server 1.es.pool.ntp.org iburst
+server 2.es.pool.ntp.org iburst
+server 3.es.pool.ntp.org iburst
+
+#Control de acesso al servidor NTP chrony
+
+allow 10.10.10.0/24
+allow 127.0.0.1
+
+
+
+
+
+systemctl restart chrony.service
+systemctl status chrony.service
+systemctl is-enabled chrony.service
+systemctl status systemd-timesyncd.service
+#desabilitar 
+systemctl disable systemd-timesyncd.service
+systemctl stop systemd-timesyncd.service
+chronyc sources
+watch -n1 chronyc sources

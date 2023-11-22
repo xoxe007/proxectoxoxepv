@@ -1,0 +1,56 @@
+wget https://downloads.apache.org/guacamole/1.4.0/binary/guacamole-auth-ldap-1.4.0.tar.gz
+
+Documentacion: https://guacamole.apache.org/doc/gug/ldap-auth.html
+
+
+Metodo 1 con LDAP acceden todos los usuarios que estén dentro de un grupo autorizado de dominio
+
+# LDAP properties
+# Configuración LDAP para Active Directory
+# Dirección IP o nombre DNS de un controlador de dominio
+ldap-hostname: 192.5.212.2
+
+# Número de puerto ldap no cifrado : 389
+ldap-port: 389
+
+# Método de cifrado para la conexión LDAP
+ldap-encryption-method: none
+
+# Punto de partida para la búsqueda de usuarios válidos en el Active Directory
+ldap-user-base-dn:DC=empresa,DC=org
+
+
+# ¿Con qué propiedad se debe comparar el nombre de usuario?
+ldap-username-attribute:sAMAccountName
+
+#DN del usuario que se usa para la consulta
+ldap-search-bind-dn:CN=Apache Guacamole,OU=Sistemas,DC=empresa,DC=org
+
+# Contraseña del usuario que se utilizará para la consulta
+ldap-search-bind-password: guacadmin
+
+# La base del DN para todos los grupos de usuarios
+ldap-group-base-dn:DC=empresa,DC=org
+
+# El atributo o atributos que definen el nombre único de los grupos de usuarios en el directorio LDAP.
+ldap-group-name-attribute:CN
+
+# Filtro de búsqueda para grupos de AD permitidos
+# Esto es muy importante para la limitación de un grupo de AD
+ldap-user-search-filter: (memberOf=CN=GUACACCESS,OU=Sistemas,DC=empresa,DC=org)
+
+
+
+Metodo 2 con LDAP Acceden todos los usuarios de dominio
+
+
+
+# LDAP properties
+ldap-hostname: 192.5.212.2
+ldap-port: 389
+#ldap-encryption-method: none
+ldap-user-base-dn:DC=atelv,DC=org
+ldap-config-base-dn:OU=Sistemas,DC=empresa,DC=org
+ldap-username-attribute:sAMAccountName
+ldap-search-bind-dn:CN=Apache Guacamole,OU=Sistemas,DC=empresa,DC=org
+ldap-search-bind-password: guacadmin
