@@ -1,0 +1,24 @@
+#1
+apt-get update
+apt-get install rsync -y
+
+#2 Editar archivo en server srvdc1 que mantiene el FSM PDC.
+vim /etc/rsyncd.conf
+
+[sysvol]
+path = /usr/local/samba/var/lib/samba/sysvol/
+comment = Compartimento sysvol
+uid = root
+gid = root
+read only = yes
+auth users = sysvol
+secrets file = /usr/local/samba/etc/rsyncd.secret
+
+#3 crear archivo en el servidor srvdc1 que contiene la identidad del usuario configurado en auth users.
+echo "sysvol:dom@1n" > /usr/local/samba/etc/rsyncd.secret
+chmod -v 640 /usr/local/samba/etc/rsyncd.secret
+
+#4 iniciar demonio rsyncd en el servidor.
+
+systemctl start rsync.service && systemctl enable rsync.service
+

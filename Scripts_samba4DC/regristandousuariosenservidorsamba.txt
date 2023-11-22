@@ -1,0 +1,34 @@
+1º - Crear cuenta de usuário root:
+smbpasswd -a root
+
+2º - editar archivo /etc/samba/smb.conf y añadir en  [GLOBAL] lo siguiente:
+add user script = /usr/sbin/useradd -M -c "Account User Samba" -s /bin/false -g Users %u
+delete user script = /usr/sbin/userdel %u
+
+3º - Aplicar los cambios con "smbcontrol":
+smbcontrol smbd reload-config
+
+4º - Crear dos cuentas de usuários:
+groupadd Users
+pdbedit -a lara -f "Lara Varela" 
+pdbedit -a jrpv -f "Xoxe prado" 
+
+5º - Crear directorio "/mnt/samba/public" y el compartido:
+mkdir -v /mnt/samba/public
+
+vim /etc/samba/smb.conf
+
+[publico]
+path = /mnt/samba/public
+read only = No
+
+6º - Salvar los cambios y atribuir permisos a la cuenta usuario "Lara Varela":
+chown -v lara /mnt/samba/public
+
+7º - Desabilitar la cuenta "lara" con el comando:
+smbpasswd -d lara
+8º - Habilitar la cuenta "lara" con el comando:
+smbpasswd -e lara
+
+11º - eliminar la cuenta "jrpv":
+smbpasswd -x jrpv

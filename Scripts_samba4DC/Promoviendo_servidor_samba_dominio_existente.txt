@@ -1,0 +1,64 @@
+#1ºParar unidad servicio systemd-resolved.service:
+systemctl stop systemd-resolved.service
+systemctl disable systemd-resolved.service
+
+#2ºEditar archivo /etc/resolv.conf:
+rm -vf /etc/resolv.conf
+vim /etc/resolv.conf
+
+# Contenido archivo /etc/resolv.conf:
+nameserver 10.10.10.11
+nameserver 10.10.10.12
+search empresa.local
+
+#3º - Editar archivo /etc/krb5.conf
+vim /etc/krb5.conf
+
+# Contenido archivo /etc/krb5.conf debe quedar así:
+[libdefaults]
+default_realm = EMPRESA.LOCAL
+dns_lookup_realm = false
+dns_lookup_kdc = true
+
+#4º Testar comunicacion contrlador dominio samba4
+kinit administrator
+klist
+
+#5º Ingresando servidor samba como controlador dominio
+samba-tool domain join empresa.local DC -U"EMPRESA\Administrator" --dns-backend=SAMBA_INTERNAL
+
+#6 Editar archivo /etc/resolv.conf:
+vim /etc/resolv.conf
+# Contenido archivo /etc/resolv.conf debe quedar:
+nameserver 10.10.10.12
+nameserver 10.10.10.11
+
+#Editamos el sguiente archivo para que cualquier nombre no sea empresa.local sea redicionado.
+                                                                                                           Modified
+# Global parameters
+[global]
+        netbios name = SRVDC2
+        realm = EMPRESA.LOCAL
+        server role = active directory domain controller
+        workgroup = EMPRESA
+        dns forwader = 8.8.8.8
+
+[netlogon]
+        path = /usr/local/samba/var/lib/samba/sysvol/empresa.local/scripts
+        read only = No
+
+[sysvol]
+        path = /usr/local/samba/var/lib/samba/sysvol
+        read only = No
+
+
+
+#7º Habiliatr servicio samba para inicializar durante el boot del sistema.
+systemctl enable samba-ad-dc.service
+
+#8º iniciando el demonio samba
+systemctl start samba-ad-dc.service
+
+		
+
+

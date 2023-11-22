@@ -1,0 +1,19 @@
+nano /etc/samba/smb.conf
+[global]
+workgroup = ESCRITORIO
+netbios name = fileserver
+#Backend - Server de datos #
+passdb backend = tdbsam
+; Seguridad #
+security = user
+encrypt passwords = yes
+# LOGs #
+log file = /var/log/samba/fileserver.log
+max log size = 2048
+log level = 2
+
+
+systemctl disable winbind.service
+systemctl stop winbind.service
+systemctl restart smbd.service
+smbcontrol smbd reload-config

@@ -1,0 +1,14 @@
+#1
+apt-get update
+apt-get install rsync -y
+
+#2 Creando la ruta de usuario sysvol en el 2 DC que recibira las actualizaciones
+echo "dom@1n" > /usr/local/samba/etc/rsyncd.secret
+chmod -v 640 /usr/local/samba/etc/rsyncd.secret
+
+#3 test
+rsync --dry-run -XAavz --delete-after --password-file=/usr/local/samba/etc/rsyncd.secret rsync://sysvol@10.10.10.11/sysvol
+/usr/local/samba/var/lib/samba/sysvol/
+
+#4 editar el archivo o /etc/crontab y crear una regla para el comando rsync para se ejecutado cada 2 min.
+*/2 * * * * root rsync -XAavz --delete-after --password-file=/usr/local/samba/etc/rsyncd.secret rsync://sysvol@10.10.10.11/sysvol /usr/local/samba/var/lib/samba/sysvol/ &> /tmp/log.sysvol
