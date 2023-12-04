@@ -1,0 +1,551 @@
+Switch  0
+
+//creacion vlans
+
+Switch>enable
+Switch#Configure terminal
+Switch(config)#vlan 10       
+Switch(config-vlan)#name infraestructuras
+Switch(config-vlan)#exit
+Switch(config)#vlan 11
+Switch(config-vlan)#name suministro
+Switch(config-vlan)#exit
+Switch(config)#vlan 12
+Switch(config-vlan)#name agua
+Switch(config-vlan)#exit
+Switch(config)#vlan 13
+Switch(config-vlan)#name direccion
+Switch(config-vlan)#exit
+Switch(config)#vlan 14
+Switch(config-vlan)#name reuniones
+Switch(config-vlan)#exit
+Switch(config)#vlan 15
+Switch(config-vlan)#name ventas
+Switch(config-vlan)#exit
+Switch(config)#vlan 16
+Switch(config-vlan)#name recepcion
+Switch(config-vlan)#exit
+Switch(config)#vlan 17
+Switch(config-vlan)#name formacion
+Switch(config-vlan)#exit
+Switch(config)#vlan 18
+Switch(config-vlan)#name operaciones
+Switch(config-vlan)#exit
+Switch(config)#vlan 19
+Switch(config-vlan)#name economia
+Switch(config-vlan)#exit
+Switch(config)#vlan 20
+Switch(config-vlan)#name impresoras
+Switch(config-vlan)#exit
+Switch(config)#vlan 25
+Switch(config-vlan)#name rrhh
+Switch(config-vlan)#exit
+Switch(config)#vlan 30
+Switch(config-vlan)#name IT
+Switch(config-vlan)#exit
+Switch(config)#vlan 50
+Switch(config-vlan)#name Voz
+Switch(config-vlan)#exit
+	
+	
+
+
+//asignamos puertos a las vlans
+
+Switch(config)#interface range fa0/1-2
+Switch(config-if-range)#switchport mode trunk
+Switch(config-if-range)#exit
+Switch(config)#interface range gi0/1-2
+Switch(config-if-range)#switchport mode trunk
+Switch(config-if-range)#exit
+Switch(config)#interface fa0/15
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 14
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+
+
+
+Switch 1
+
+//Creamos vlans
+
+Switch>enable
+Switch#Configure terminal
+Switch(config)#vlan 10       
+Switch(config-vlan)#name infraestructuras
+Switch(config-vlan)#exit
+Switch(config)#vlan 11
+Switch(config-vlan)#name suministro
+Switch(config-vlan)#exit
+Switch(config)#vlan 12
+Switch(config-vlan)#name agua
+Switch(config-vlan)#exit
+Switch(config)#vlan 13
+Switch(config-vlan)#name direccion
+Switch(config-vlan)#exit
+Switch(config)#vlan 14
+Switch(config-vlan)#name reuniones
+Switch(config-vlan)#exit
+Switch(config)#vlan 15
+Switch(config-vlan)#name ventas
+Switch(config-vlan)#exit
+Switch(config)#vlan 16
+Switch(config-vlan)#name recepcion
+Switch(config-vlan)#exit
+Switch(config)#vlan 17
+Switch(config-vlan)#name formacion
+Switch(config-vlan)#exit
+Switch(config)#vlan 18
+Switch(config-vlan)#name operaciones
+Switch(config-vlan)#exit
+Switch(config)#vlan 19
+Switch(config-vlan)#name economia
+Switch(config-vlan)#exit
+Switch(config)#vlan 20
+Switch(config-vlan)#name impresoras
+Switch(config-vlan)#exit
+Switch(config)#vlan 25
+Switch(config-vlan)#name rrhh
+Switch(config-vlan)#exit
+Switch(config)#vlan 30
+Switch(config-vlan)#name IT
+Switch(config-vlan)#exit
+Switch(config)#vlan 50
+Switch(config-vlan)#name Voz
+Switch(config-vlan)#exit
+
+//asignamos puertos a las vlans
+
+Switch(config)#interface range fa0/1-5
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/6-9
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 11
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/10-13
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 12
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface fa0/14
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 13
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface fa0/15
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 14
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/16-18
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 20
+Switch(config-if)#exit
+Switch(config)#interface fa0/21
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 21
+Switch(config-if)#exit
+Switch(config)#interface range gi0/1-2
+Switch(config-if-range)#switchport mode trunk
+Switch(config-if-range)#exit
+
+
+Switch 2
+
+/Creamos vlans
+
+Switch>enable
+Switch#Configure terminal
+Switch(config)#vlan 10       
+Switch(config-vlan)#name infraestructuras
+Switch(config-vlan)#exit
+Switch(config)#vlan 11
+Switch(config-vlan)#name suministro
+Switch(config-vlan)#exit
+Switch(config)#vlan 12
+Switch(config-vlan)#name agua
+Switch(config-vlan)#exit
+Switch(config)#vlan 13
+Switch(config-vlan)#name direccion
+Switch(config-vlan)#exit
+Switch(config)#vlan 14
+Switch(config-vlan)#name reuniones
+Switch(config-vlan)#exit
+Switch(config)#vlan 15
+Switch(config-vlan)#name ventas
+Switch(config-vlan)#exit
+Switch(config)#vlan 16
+Switch(config-vlan)#name recepcion
+Switch(config-vlan)#exit
+Switch(config)#vlan 17
+Switch(config-vlan)#name formacion
+Switch(config-vlan)#exit
+Switch(config)#vlan 18
+Switch(config-vlan)#name operaciones
+Switch(config-vlan)#exit
+Switch(config)#vlan 19
+Switch(config-vlan)#name economia
+Switch(config-vlan)#exit
+Switch(config)#vlan 20
+Switch(config-vlan)#name impresoras
+Switch(config-vlan)#exit
+Switch(config)#vlan 25
+Switch(config-vlan)#name rrhh
+Switch(config-vlan)#exit
+Switch(config)#vlan 30
+Switch(config-vlan)#name IT
+Switch(config-vlan)#exit
+Switch(config)#vlan 50
+Switch(config-vlan)#name Voz
+Switch(config-vlan)#exit
+
+//asignamos puertos a las vlans
+
+Switch(config)#interface range fa0/1-2
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 15
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/3-5
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 30
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface fa0/6
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 16
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/7-9
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 17
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/10-11
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 18
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/12-13
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 19
+Switch(config-if)#switchport voice vlan 50
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#exit
+Switch(config)#interface range fa0/14-16
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 25
+Switch(config-if)#exit
+Switch(config)#interface range fa0/17-18
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 20
+Switch(config-if)#exit
+Switch(config)#interface range gi0/1-2
+Switch(config-if-range)#switchport mode trunk
+Switch(config-if-range)#exit
+
+Router
+
+//Creamos subinterfaces para las Vlans
+
+Router>enable
+Router#configure terminal
+Router(config)#interface fa0/0.10
+Router(config-subif)#encapsulation dot1Q 10
+Router(config-subif)#ip address 192.168.10.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.11
+Router(config-subif)#encapsulation dot1Q 11
+Router(config-subif)#ip address 192.168.11.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.12
+Router(config-subif)#encapsulation dot1Q 12
+Router(config-subif)#ip address 192.168.12.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.13
+Router(config-subif)#encapsulation dot1Q 13
+Router(config-subif)#ip address 192.168.13.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.14
+Router(config-subif)#encapsulation dot1Q 14
+Router(config-subif)#ip address 192.168.14.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.15
+Router(config-subif)#encapsulation dot1Q 15
+Router(config-subif)#ip address 192.168.15.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.16
+Router(config-subif)#encapsulation dot1Q 16
+Router(config-subif)#ip address 192.168.16.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.17
+Router(config-subif)#encapsulation dot1Q 17
+Router(config-subif)#ip address 192.168.17.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.18
+Router(config-subif)#encapsulation dot1Q 18
+Router(config-subif)#ip address 192.168.18.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.19
+Router(config-subif)#encapsulation dot1Q 19
+Router(config-subif)#ip address 192.168.19.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.20
+Router(config-subif)#encapsulation dot1Q 20
+Router(config-subif)#ip address 192.168.20.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.21
+Router(config-subif)#encapsulation dot1Q 20
+Router(config-subif)#ip address 192.168.20.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.25
+Router(config-subif)#encapsulation dot1Q 31
+Router(config-subif)#ip address 192.168.31.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.30
+Router(config-subif)#encapsulation dot1Q 30
+Router(config-subif)#ip address 192.168.30.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0.50
+Router(config-subif)#encapsulation dot1Q 50
+Router(config-subif)#ip address 192.168.50.1 255.255.255.0
+Router(config-subif)#exit
+Router(config)#interface fa0/0
+Router(config-if)#no shutdown
+
+//Se configura dhcp
+Router(config)#ip dhcp excluded-address 192.168.10.1
+Router(config)#ip dhcp pool infraestructura
+Router(dhcp-config)#network 192.168.10.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.10.1
+Router(dhcp-config)#option 150 ip 192.168.10.1
+Router(dhcp-config)#exit
+Router(config)#ip dhcp excluded-address 192.168.11.1
+Router(config)#ip dhcp pool suministro
+Router(dhcp-config)#network 192.168.11.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.11.1
+Router(dhcp-config)#option 150 ip 192.168.11.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.12.1
+Router(config)#ip dhcp pool agua
+Router(dhcp-config)#network 192.168.12.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.12.1
+Router(dhcp-config)#option 150 ip 192.168.12.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.13.1
+Router(config)#ip dhcp pool direccion
+Router(dhcp-config)#network 192.168.13.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.13.1
+Router(dhcp-config)#option 150 ip 192.168.13.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.14.1
+Router(config)#ip dhcp pool reunion
+Router(dhcp-config)#network 192.168.14.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.14.1
+Router(dhcp-config)#option 150 ip 192.168.14.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.15.1
+Router(config)#ip dhcp pool ventas
+Router(dhcp-config)#network 192.168.15.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.15.1
+Router(dhcp-config)#option 150 ip 192.168.15.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.16.1
+Router(config)#ip dhcp pool recepcion
+Router(dhcp-config)#network 192.168.16.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.16.1
+Router(dhcp-config)#option 150 ip 192.168.16.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.17.1
+Router(config)#ip dhcp pool formacion
+Router(dhcp-config)#network 192.168.17.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.17.1
+Router(dhcp-config)#option 150 ip 192.168.17.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.18.1
+Router(config)#ip dhcp pool operaciones
+Router(dhcp-config)#network 192.168.18.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.18.1
+Router(dhcp-config)#option 150 ip 192.168.18.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.19.1
+Router(config)#ip dhcp pool economia
+Router(dhcp-config)#network 192.168.19.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.19.1
+Router(dhcp-config)#option 150 ip 192.168.19.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.20.1
+Router(config)#ip dhcp pool impresoras
+Router(dhcp-config)#network 192.168.20.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.20.1
+Router(dhcp-config)#option 150 ip 192.168.20.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.25.1
+Router(config)#ip dhcp pool rrhh
+Router(dhcp-config)#network 192.168.25.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.25.1
+Router(dhcp-config)#option 150 ip 192.168.25.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.30.1
+Router(config)#ip dhcp pool it
+Router(dhcp-config)#network 192.168.30.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.30.1
+Router(dhcp-config)#option 150 ip 192.168.30.1
+Router(config)#exit
+Router(config)#ip dhcp excluded-address 192.168.50.1
+Router(config)#ip dhcp pool voz
+Router(dhcp-config)#network 192.168.50.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.50.1
+Router(dhcp-config)#option 150 ip 192.168.50.1
+Router(config)#exit
+
+//configuramos VOIP
+
+Router(config)#telephony-service
+Router(config-telephony)#max-dn 30
+Router(config-telephony)#ip source-address 192.168.50.1 port 2000
+Router(config-telephony)#auto assign 1 to 25
+Router(config-telephony)#ephone-dn 1
+Router(config-ephone-dn)#number 101
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 2
+Router(config-ephone-dn)#number 102
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 3
+r(config-ephone-dn)#number 103
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 4
+Router(config-ephone-dn)#number 104
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 5
+Router(config-ephone-dn)#number 111
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 6
+Router(config-ephone-dn)#number 112
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 7
+Router(config-ephone-dn)#number 113
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 8
+Router(config-ephone-dn)#number 121
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 9
+Router(config-ephone-dn)#number 122
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 10
+Router(config-ephone-dn)#number 123
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 11
+Router(config-ephone-dn)#number 131
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 12
+Router(config-ephone-dn)#number 141
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 13
+Router(config-ephone-dn)#number 151
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 14
+Router(config-ephone-dn)#number 152
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 15
+Router(config-ephone-dn)#number 300
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 16
+Router(config-ephone-dn)#number 301
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 17
+Router(config-ephone-dn)#number 161
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 18
+Router(config-ephone-dn)#number 171
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 19
+Router(config-ephone-dn)#number 181
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 20
+Router(config-ephone-dn)#number 182
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 21
+Router(config-ephone-dn)#number 191
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 22
+Router(config-ephone-dn)#number 192
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 23
+Router(config-ephone-dn)#number 251
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 24
+Router(config-ephone-dn)#number 252
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 25
+Router(config-ephone-dn)#number 400
+Router(config-ephone-dn)#exit
+Router(config)#exit
+
+//ACL
+
+Router(config)#access-list 100 deny ip 192.168.10.0 0.0.0.255 192.168.11.0 0.0.0.255
+Router(config)#access-list 100 permit ip any any
+Router(config)#interface fa0/0.10
+Router(config-subif)#ip access-group 100 in
+Router(config-subif)#exit
+Router(config)#access-list 101 deny ip 192.168.11.0 0.0.0.255 192.168.12.0 0.0.0.255
+Router(config)#access-list 101 permit ip any any
+Router(config)#interface fa0/0.11
+Router(config-subif)#ip access-group 101 in
+Router(config-subif)#exit
+Router(config)#access-list 102 deny ip 192.168.12.0 0.0.0.255 192.168.10.0 0.0.0.255
+Router(config)#access-list 102 permit ip any any
+Router(config)#interface fa0/0.12
+Router(config-subif)#ip access-group 101 in
+Router(config-subif)#exit
+Router(config)#access-list 103 deny ip 192.168.17.0 0.0.0.255 any
+Router(config)#access-list 103 permit ip any any
+Router(config)#interface fa0/0.17
+Router(config-subif)#ip access-group 103 in
+Router(config-subif)#exit
+access-list 104 deny ip 192.168.25.0 0.0.0.255 192.168.21.100 0.0.0.0
+Router(config)#access-list 104 permit ip any any
+Router(config)#interface fa0/0.25
+Router(config-subif)#ip access-group 104 in
+Router(config-subif)#exit
+Router(config)#access-list 105 deny ip 192.168.19.0 0.0.0.255 192.168.21.100 0.0.0.0
+Router(config)#access-list 105 permit ip any any
+Router(config)#interface fa0/0.19
+Router(config-subif)#ip access-group 105 in
+Router(config-subif)#exit
+Router(config)#access-list 106 deny ip 192.168.18.0 0.0.0.255 192.168.21.100 0.0.0.0
+Router(config)#access-list 106 permit ip any any
+Router(config)#interface fa0/0.18
+Router(config-subif)#ip access-group 106 in
+Router(config-subif)#exit
+Router(config)#access-list 107 deny ip 192.168.16.0 0.0.0.255 192.168.21.100 0.0.0.0
+Router(config)#access-list 107 permit ip any any
+Router(config)#interface fa0/0.16
+Router(config-subif)#ip access-group 107 in
+Router(config-subif)#exit
+Router(config)#access-list 108 deny ip 192.168.15.0 0.0.0.255 192.168.21.100 0.0.0.0
+Router(config)#access-list 108 permit ip any any
+Router(config)#interface fa0/0.15
+Router(config-subif)#ip access-group 108 in
+Router(config-subif)#exit
+Router(config)#access-list 110 deny tcp 192.168.17.0  0.0.0.255  any eq 80
+Router(config)#access-list 110 permit ip any any
+Router(config)#interface fa0/1
+Router(config-if)#ip access-group 110 in
