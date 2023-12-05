@@ -1,0 +1,101 @@
+nano /etc/systemd/timesyncd.conf
+systemctl restart systemd-timesyncd.service
+systemctl status systemd-timesyncd.service
+
+nano /etc/crontab
+
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+@reboot root systemctl start systemd-timesyncd.service
+
+
+#editamos nano /etc/nsswitch.conf
+
+
+# /etc/nsswitch.conf
+#
+# Example configuration of GNU Name Service Switch functionality.
+# If you have the `glibc-doc-reference' and `info' packages installed, try:
+# `info libc "Name Service Switch"' for information about this file.
+
+passwd:         files systemd sss
+group:          files systemd sss
+shadow:         files sss
+gshadow:        files
+
+hosts:          files dns /etc/resolv.conf
+#hosts:          files mdns4_minimal [NOTFOUND=return] dns
+networks:       files
+
+protocols:      db files
+services:       db files sss
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis sss
+sudoers:        files sss
+automount:      sss
+
+#para ver dominio
+
+realm discover empresa.local -v
+
+#ingresar dominio
+
+realm join empresa.local --user=administrator --client-software=sssd --os-name="zorin Desktop"--os-version="16.03" -v
+
+nano /etc/sssd/sssd.conf
+
+systemctl is-enabled sssd.service
+
+pam-auth-update
+nano /usr/share/pam-configs/mkhomedir
+
+Name: Create home directory on login
+Default: no
+Priority: 0
+Session-Type: Additional
+Session-Interactive-Only: yes
+Session:
+        optional                        pam_mkhomedir.so        umask=077
+
+Los «Pluggable Authentication Modules» (PAM, o Módulos de autenticación insertables, N. del T.) determinan cómo se gestiona dentro del sistema la autenticación, autorización y    │
+  │ modificación de contraseñas. También permiten la definición de acciones adicionales a realizar cuando se inicia la sesión de un usuario.                                           │
+  │                                                                                                                                                                                    │
+  │ Algunos de los paquetes de módulos de PAM ofrecen perfiles que pueden utilizarse para ajustar automáticamente el comportamiento de todas las aplicaciones que utilicen PAM en el   │
+  │ sistema. Indique qué comportamiento desea activar.                                                                                                                                 │
+  │                                                                                                                                                                                    │
+  │ Perfiles PAM a habilitar:                                                                                                                                                          │
+  │                                                                                                                                                                                    │
+  │    [*] Pwquality password strength checking                                                                                                                                        │
+  │    [ ] Fingerprint authentication                                                                                                                                                  │
+  │    [*] Unix authentication                                                                                                                                                         │
+  │    [*] SSS authentication                                                                                                                                                          │
+  │    [*] Register user sessions in the systemd control group hierarchy                                                                                                               │
+  │    [*] Create home directory on login                                                                                                                                              │
+  │    [*] GNOME Keyring Daemon - Login keyring management                                                                                                                             │
+  │    [*] Inheritable Capabilities Management                                                                                                                                         │
+  │                                                                                                                                                                                    │
+  │                                                                                                                                                                                    │
+  │                                                       <Aceptar>                                                      <Cancelar>                                                    │
+  │                                                                                                                                     

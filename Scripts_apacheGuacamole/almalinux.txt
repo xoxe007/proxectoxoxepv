@@ -1,0 +1,83 @@
+yum update  -y
+ 
+vim /etc/sysconfig/selinux -> cambiar ah disabled
+ 
+########################################################
+ 
+dnf config-manager --set-enabled powertools
+ 
+yum install -y epel-release
+ 
+yum install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm
+ 
+yum install -y  libgcrypt-devel.x86_64 libtool libpng-devel libjpeg-devel libjpeg-turbo-devel cairo-devel uuid-devel 
+ 
+yum install -y google-droid-sans-mono-fonts 
+ 
+yum install -y ffmpeg ffmpeg-devel freerdp-devel libssh2-devel libtelnet-devel libvncserver-devel libwebsockets-devel pulseaudio-libs-devel openssl-devel libvorbis-devel libwebp-devel pango-devel
+ 
+yum install -y tomcat-native ghostscript
+ 
+########################################################
+ 
+useradd -r -d /opt/guacd -s /sbin/nologin guacd
+ 
+mkdir /opt/guacd 
+ 
+mkdir /opt/guacd/var
+Descarga del guacd "Guacamole Server"
+
+
+
+GUACAMOLE SERVER
+
+wget https://dlcdn.apache.org/guacamole/1.5.2/source/guacamole-server-1.5.2.tar.gz
+ 
+tar -xvzf guacamole-server-1.5.2.tar.gz
+ 
+cd guacamole-server-1.5.2
+ 
+./configure --with-systemd-dir=/etc/systemd/system --prefix=/opt/guacd
+ 
+make
+ 
+make install
+ 
+ldconfig 
+ 
+sed -i "s/User=daemon/User=guacd/ " /etc/systemd/system/guacd.service
+ 
+mkdir  /etc/guacamole/
+ 
+########################################################
+ 
+vim /etc/guacamole/guacd.conf
+ 
+ 
+#
+# guacd configuration file
+#
+ 
+[daemon]
+ 
+pid_file = /opt/guacd/var/guacd.pid
+log_level = info
+ 
+[server]
+ 
+bind_host = localhost
+bind_port = 4822
+ 
+########################################################
+ 
+chown -R guacd:guacd /opt/guacd
+ 
+chmod 755 -R /opt/guacd
+ 
+systemctl enable guacd
+ 
+systemctl start guacd
+ 
+ln -s /opt/guacd/bin/guacenc  /sbin/guacenc
+ 
+ln -s /opt/guacd/bin/guaclog /sbin/guaclog

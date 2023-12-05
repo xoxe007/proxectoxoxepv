@@ -1,4 +1,4 @@
-wget https://downloads.apache.org/guacamole/1.4.0/binary/guacamole-auth-ldap-1.4.0.tar.gz
+wget https://downloads.apache.org/guacamole/1.5.0/binary/guacamole-auth-ldap-1.5.0.tar.gz
 
 Documentacion: https://guacamole.apache.org/doc/gug/ldap-auth.html
 
@@ -8,7 +8,7 @@ Metodo 1 con LDAP acceden todos los usuarios que estén dentro de un grupo autor
 # LDAP properties
 # Configuración LDAP para Active Directory
 # Dirección IP o nombre DNS de un controlador de dominio
-ldap-hostname: 192.5.212.2
+ldap-hostname: 10.10.10.11
 
 # Número de puerto ldap no cifrado : 389
 ldap-port: 389
